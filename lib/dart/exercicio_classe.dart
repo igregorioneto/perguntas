@@ -1,4 +1,4 @@
-imprimirProduto(int qtd, {String nome = '', double preco = 0}) {
+imprimirProduto(int qtd, {required String nome, required double preco}) {
   for (var i = 0; i < qtd; i++) {
     print('Produto é $nome e seu valor é R\$$preco !!!');
   }
@@ -16,7 +16,7 @@ class Produto {
   // Parâmetros posicionais
   // Produto(this.nome, this.preco);
   // Parâmetros nomeados
-  // Produto({this.nome, this.preco});
+  // Produto({required this.nome, required this.preco});
 
   Produto(this.nome, this.preco);
 }
