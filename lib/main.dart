@@ -5,8 +5,11 @@ main() => runApp(ParguntaApp());
 class ParguntaApp extends StatelessWidget {
   // const ParguntaApp({Key? key}) : super(key: key);
 
+  var perguntaSelecionada = 0;
+
   void responder() {
-    print('Respondendo...');
+    perguntaSelecionada++;
+    print(perguntaSelecionada);
   }
 
   final List<String> perguntas = [
@@ -23,7 +26,7 @@ class ParguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             // Esta forma é a anterior ao flutter 2
             // RaisedButton(
             //   child: Text('Resposta 1'),
@@ -35,13 +38,11 @@ class ParguntaApp extends StatelessWidget {
             ),
             ElevatedButton(
               child: const Text('Resposta 2'),
-              onPressed: () {
-                print('Respondendo...');
-              },
+              onPressed: responder,
             ),
             ElevatedButton(
               child: const Text('Resposta 3'),
-              onPressed: () => print('Respondendo...'),
+              onPressed: responder,
             )
           ],
         ),
