@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:perguntas/questao.dart';
-import 'package:perguntas/resposta.dart';
+import 'package:perguntas/questionario.dart';
 import 'package:perguntas/resultado.dart';
 
 main() => runApp(PerguntaApp());
@@ -14,11 +13,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
       'respostas': ['Preto', 'Cinza', 'Vermelho', 'Branco']
     },
     {
-      'text': 'Qual seu animal de estimação favorito?',
+      'texto': 'Qual seu animal de estimação favorito?',
       'respostas': ['Lobo', 'Gavião', 'Leão', 'Tigre']
     },
     {
-      'text': 'Qual seu instrutor favorito?',
+      'texto': 'Qual seu instrutor favorito?',
       'respostas': ['Leo', 'Maria', 'João', 'Julia']
     }
   ];
@@ -35,30 +34,20 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    Object? respostas = temPerguntaSelecionada
-        ? _perguntas[_perguntaSelecionada]['respostas']
-        : [];
-
-    // for (String textResp
-    //     in _perguntas[_perguntaSelecionada]['respostas'].toString()) {
-    //   respostas.add(Resposta(textResp, _responder));
-    // }
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Perguntas'),
+          title: const Center(
+            child: Text(
+              'Perguntas',
+            ),
+          ),
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: <Widget>[
-                  Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
-                  temPerguntaSelecionada
-                      ? respostas!
-                          .map((t) => Resposta(t.toString(), _responder))
-                          .toList()
-                      : null,
-                ],
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                responder: _responder,
               )
             : Resultado(),
       ),
